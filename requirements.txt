@@ -1,0 +1,4 @@
+git+https://github.com/adbar/courlan.git#egg=courlan
+openpyxl>=3.0.0
+pandas==1.3.3
+streamlit==1.14.0
