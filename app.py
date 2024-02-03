@@ -45,7 +45,7 @@ def get_binary_file_downloader_html(df, file_type='csv'):
         b64 = base64.b64encode(csv.encode()).decode()
         filename = 'normalized_urls.csv'
     elif file_type == 'xlsx':
-        excel = df.to_excel(index=False)
+        excel = df.to_excel(index=False, engine='openpyxl')  # Specify engine for Excel
         b64 = base64.b64encode(excel).decode()
         filename = 'normalized_urls.xlsx'
 
