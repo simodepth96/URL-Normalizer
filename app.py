@@ -14,14 +14,14 @@ def main():
     # Introduction
     st.markdown("""
     This Streamlit app returns an array table with normalized URLs based on the provided **XLSX** or **CSV** file.\n
-    Ensure your file includes: \n
-    **'URL'** as the main header\n
+    Ensure your file includes as the only header: \n
+    **'URL'**\n
     **Features**:\n
     1. Removes ID session attributes \n
     2. Removes UTM parameters \n
     3. Removes hashbangs (fragments)\n
     **Use Cases** \n
-    Mapping out canonical URLs to provide to developers for implementation.
+    Mapping out canonical URLs to hand over to developers for implementation.
     """)
 
     # Upload file
