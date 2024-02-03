@@ -10,6 +10,8 @@ Ensure your file includes as the only header:
 </li>
 
 ## Features
+Leverages the Python-based <a href="https://github.com/adbar/courlan" target="_blank" rel="noopener">Courlan</a> library for NLP normalization.
+Refer to the main repository to get more from this library designed to ease your efforts with data cleaning
 <ul>
   1. Removes ID session attributes
 </ul>
