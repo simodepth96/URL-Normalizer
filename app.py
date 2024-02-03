@@ -14,14 +14,14 @@ def main():
     # Introduction
     st.markdown("""
     This Streamlit app returns an array table with normalized URLs based on the provided **XLSX** or **CSV** file.\n
-    Ensure your file includes: \n
-    **'URL'** as the main header\n
+    Ensure your file includes an only header: \n
+    **'URL'**\n
     **Features**:\n
     1. Removes ID session attributes \n
     2. Removes UTM parameters \n
     3. Removes hashbangs (fragments)\n
     **Use Cases** \n
-    Mapping out canonical URLs to provide to developers for implementation.
+    Mapping out canonical URLs to hand over to developers for implementation.
     """)
 
     # Upload file
@@ -48,8 +48,19 @@ def main():
         st.write("Preview of the Data:")
         st.dataframe(df[['URL', 'Normalized_URL']])
 
-        # Download button for normalized data
-        st.markdown(get_binary_file_downloader_html(df), unsafe_allow_html=True)
+def get_binary_file_downloader_html(df, file_type='csv'):
+    if file_type == 'csv':
+        csv = df.to_csv(index=False)
+        b64 = base64.b64encode(csv.encode()).decode()
+        filename = 'normalized_urls.csv'
+    elif file_type == 'xlsx':
+        excel_writer = pd.ExcelWriter('dummy.xlsx', engine='xlsxwriter')
+        df.to_excel(excel_writer, index=False)
+        excel_writer.save()
+        with open('dummy.xlsx', 'rb') as f:
+            b64 = base64.b64encode(f.read()).decode()
+        filename = 'normalized_urls.xlsx'
 
-if __name__ == "__main__":
-    main()
+    href = f'<a href="data:file/{file_type};base64,{b64}" download="{filename}">Download {filename}</a>'
+    return href
+
