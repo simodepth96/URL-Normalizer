@@ -31,8 +31,8 @@ def main():
         # Apply the function to remove values after '&post='
         df['Normalized_URL'] = df['Normalized_URL'].apply(remove_post_value)
 
-        # Display the normalized URLs
-        st.write("Normalized URLs:")
+        # Display the full array as a preview
+        st.write("Preview of the Data:")
         st.dataframe(df[['URL', 'Normalized_URL']])
 
         # Download button for normalized data
