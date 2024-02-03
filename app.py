@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from urllib.parse import urlparse
 from courlan import normalize_url
+import base64
 
 # Function to remove values after '&post='
 def remove_post_value(url):
@@ -38,12 +39,15 @@ def main():
         # Download button for normalized data
         st.markdown(get_binary_file_downloader_html(df), unsafe_allow_html=True)
 
-# Function to create a download link for the DataFrame
-def get_binary_file_downloader_html(df):
-    csv = df.to_csv(index=False)
-    b64 = base64.b64encode(csv.encode()).decode()  # B64 encoding
-    href = f'<a href="data:file/csv;base64,{b64}" download="normalized_urls.csv">Download Normalized URLs</a>'
-    return href
+def get_binary_file_downloader_html(df, file_type='csv'):
+    if file_type == 'csv':
+        csv = df.to_csv(index=False)
+        b64 = base64.b64encode(csv.encode()).decode()
+        filename = 'normalized_urls.csv'
+    elif file_type == 'xlsx':
+        excel = df.to_excel(index=False)
+        b64 = base64.b64encode(excel).decode()
+        filename = 'normalized_urls.xlsx'
 
-if __name__ == "__main__":
-    main()
+    href = f'<a href="data:file/{file_type};base64,{b64}" download="{filename}">Download {filename}</a>'
+    return href
