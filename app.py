@@ -11,6 +11,21 @@ def remove_post_value(url):
 def main():
     st.title("URL Normalizer")
 
+# Introduction
+st.markdown("""
+This Streamlit app returns an array with Normalized URLs based on the provided **XLSX** or **CSV** file.\n
+Ensure your file includes: \n
+**'URL' as the main header \n
+**"Features"\n
+1.Removes ID session attributes"
+2.Removes UTM parameters"
+3.Removes hashbangs (fragments)"
+""")
+
+# Use Cases
+st.header("Use Cases")
+st.write("- Mapping out canonical URLs to provide to developers for implementation.")
+
     # Upload file
     uploaded_file = st.file_uploader("Upload XLSX or CSV file", type=["xlsx", "csv"])
 
