@@ -39,14 +39,15 @@ st.title("Hreflang XML Sitemap Generator")
 
 # Introduction
 st.markdown("""
-This Streamlit app generates an hreflang XML sitemap based on the provided **XLSX** or **CSV** file.\n
+This Streamlit app returns an array table with normalized URLs based on the provided **XLSX** or **CSV** file.\n
 Ensure your file includes: \n
-**'URL', 'Language', and 'Region' and 'X-Default'** with a full URL \n
-The app allows users to generate an hreflang XML sitemap for websites targeting:\n
-1. Language and Region \n
-2. Only a Language or a Region \n
-**Important** \n
-In case you are targeting a language that merely reflects the region, make sure to leave one of the Language and Region headers as **none** in your XLSX/CSV file.
+**'URL'** as the main header\n
+**Features**:\n
+1. Removes ID session attributes \n
+2. Removes UTM parameters \n
+3. Removes hashbangs (fragments)\n
+**Use Cases** \n
+Mapping out canonical URLs to provide to developers for implementation.
 """)
 
 # File upload
