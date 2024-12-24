@@ -31,7 +31,7 @@ def main():
 
     # Upload file
     uploaded_file = st.file_uploader(
-        "📤 Upload XLSX/CSV file with URL and Features as headers", type=["xlsx", "csv"]
+        "📤 Upload XLSX/CSV file with URL as header", type=["xlsx", "csv"]
     )
 
     if uploaded_file is not None:
