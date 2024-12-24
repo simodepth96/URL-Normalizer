@@ -26,5 +26,7 @@ Refer to the main repository to get more from this library designed to ease your
 
 Mapping out canonical URLs to hand over to developers for implementation.
 
+## Useful Links
 
-Find more at my <a href="https://seodepths.com/tools-for-seo/" target="_blank" rel="noopener">SEO Toolstation</a>
+1. You can access the app <a href="https://url-normalizer.streamlit.app/" target="_blank" rel="noopener">here</a>
+2. Find more at my <a href="https://seodepths.com/tools-for-seo/" target="_blank" rel="noopener">SEO Toolstation</a>
