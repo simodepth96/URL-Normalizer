@@ -5,35 +5,36 @@ import base64
 from courlan import normalize_url
 
 # Streamlit app
+
 def main():
     st.title("URL Normalizer")
 
     # Introduction
     st.markdown(
-    "This Streamlit app returns an array table with normalized URLs based on the provided **XLSX** or **CSV** file"
-    )
-st.sidebar.subheader("🎯 Use Cases")
-st.sidebar.markdown(
-    "Mapping out canonical URLs to hand over to developers for implementation."
-)
-
-st.sidebar.subheader("💪 Strengths")
-st.sidebar.markdown(
-    """
-    1. Removes ID session attributes
-    2. Removes UTM parameters
-    3. Removes hashbangs (fragments)
-    """
+        "This Streamlit app returns an array table with normalized URLs based on the provided **XLSX** or **CSV** file."
     )
 
-# Function to remove values after '&post='
-def remove_post_value(url):
-    return url.split('&post=')[0]
-    
-# Upload file
-uploaded_file = st.file_uploader("📤 Upload XLSX/CSV file with URL and Features as headers", type=["xlsx", "csv"])
+    # Sidebar Information
+    st.sidebar.subheader("🎯 Use Cases")
+    st.sidebar.markdown(
+        "Mapping out canonical URLs to hand over to developers for implementation."
+    )
 
-if uploaded_file is not None:
+    st.sidebar.subheader("💪 Strengths")
+    st.sidebar.markdown(
+        """
+        1. Removes ID session attributes
+        2. Removes UTM parameters
+        3. Removes hashbangs (fragments)
+        """
+    )
+
+    # Upload file
+    uploaded_file = st.file_uploader(
+        "📤 Upload XLSX/CSV file with URL and Features as headers", type=["xlsx", "csv"]
+    )
+
+    if uploaded_file is not None:
         # Read the file
         try:
             if uploaded_file.type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
@@ -57,6 +58,11 @@ if uploaded_file is not None:
         # Download button for normalized data
         st.markdown(get_binary_file_downloader_html(df), unsafe_allow_html=True)
 
+# Function to remove values after '&post='
+def remove_post_value(url):
+    return url.split('&post=')[0]
+
+# Function for generating download link
 def get_binary_file_downloader_html(df, file_type='csv'):
     if file_type == 'csv':
         csv = df.to_csv(index=False)
