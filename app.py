@@ -13,22 +13,27 @@ def main():
     st.title("URL Normalizer")
 
     # Introduction
-    st.markdown("""
-    This Streamlit app returns an array table with normalized URLs based on the provided **XLSX** or **CSV** file.\n
-    Ensure your file includes as the only header: \n
-    **'URL'**\n
-    **Features**:\n
-    1. Removes ID session attributes \n
-    2. Removes UTM parameters \n
-    3. Removes hashbangs (fragments)\n
-    **Use Cases** \n
-    Mapping out canonical URLs to hand over to developers for implementation.
-    """)
+    st.markdown(
+    "This Streamlit app returns an array table with normalized URLs based on the provided **XLSX** or **CSV** file"
+    )
+st.sidebar.subheader("🎯 Use Cases")
+st.sidebar.markdown(
+    "Mapping out canonical URLs to hand over to developers for implementation."
+)
 
-    # Upload file
-    uploaded_file = st.file_uploader("Upload XLSX or CSV file", type=["xlsx", "csv"])
+st.sidebar.subheader("💪 Strengths")
+st.sidebar.markdown(
+    """
+    1. Removes ID session attributes
+    2. Removes UTM parameters
+    3. Removes hashbangs (fragments)
+    """
+    )
 
-    if uploaded_file is not None:
+ # Upload file
+    uploaded_file = st.file_uploader("📤 Upload XLSX/CSV file with URL and Features as headers", type=["xlsx", "csv"])
+
+if uploaded_file is not None:
         # Read the file
         try:
             if uploaded_file.type == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
