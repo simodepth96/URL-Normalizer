@@ -4,10 +4,6 @@ import numpy as np
 import base64
 from courlan import normalize_url
 
-# Function to remove values after '&post='
-def remove_post_value(url):
-    return url.split('&post=')[0]
-
 # Streamlit app
 def main():
     st.title("URL Normalizer")
@@ -30,8 +26,12 @@ st.sidebar.markdown(
     """
     )
 
- # Upload file
-    uploaded_file = st.file_uploader("📤 Upload XLSX/CSV file with URL and Features as headers", type=["xlsx", "csv"])
+# Function to remove values after '&post='
+def remove_post_value(url):
+    return url.split('&post=')[0]
+    
+# Upload file
+uploaded_file = st.file_uploader("📤 Upload XLSX/CSV file with URL and Features as headers", type=["xlsx", "csv"])
 
 if uploaded_file is not None:
         # Read the file
